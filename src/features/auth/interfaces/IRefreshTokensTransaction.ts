@@ -5,4 +5,4 @@ interface IRefreshTokensTransaction {
     execute(userId: number, tokens: Array<CreateTokenDto>): Promise<void>;
 }
 
-export {IRefreshTokensTransaction};
+export type {IRefreshTokensTransaction};

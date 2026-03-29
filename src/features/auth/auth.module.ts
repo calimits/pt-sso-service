@@ -1,23 +1,16 @@
 import { Module } from '@nestjs/common';
-import PostgreAuthRepository from './auth.repository';
-import JWTProvider from './token.provider';
-import BCrypt from './bcrypt.encryptor';
-import RefreshTokensTransaction from './refreshTokens.transaction';
+import PostgreAuthRepository from './repository/auth.repository';
+import JWTProvider from './providers/token.provider';
+import BCrypt from './providers/bcrypt.encryptor';
+import RefreshTokensTransaction from './providers/refreshTokens.transaction';
 import { AuthService } from './auth.service';
 import { AuthController } from './auth.controller';
-import { ConfigModule } from '@nestjs/config';
-import { DataSource } from 'typeorm';
-import AppDataSource from 'src/config/data-source';
-import { IAuthRepository } from './interfaces/IAuthRepository';
+import { DatabaseModule } from '../../config/database.module';
 
 @Module({
-  imports: [ConfigModule],
+  imports: [DatabaseModule],
   controllers: [AuthController],
   providers: [
-    {
-      provide: "DATA_SOURCE",
-      useValue: AppDataSource
-    },
     {
       provide: "AUTH_REPOSITORY",
       useClass: PostgreAuthRepository

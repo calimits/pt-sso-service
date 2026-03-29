@@ -1,17 +1,17 @@
-import { ValidationError } from "src/common/utils/errors/ValidationError";
 import { CreateUserDto } from "./dtos/CreateUserDto";
 import LoggedInDto from "./dtos/LoggedInDto";
 import LoginDto from "./dtos/LoginDto";
 import { UserDto } from "./dtos/UserDto";
 import UserInfoDto from "./dtos/UserInfoDto";
-import {IAuthRepository} from "./interfaces/IAuthRepository";
-import {IEncryptor} from "./interfaces/IEncryptor";
-import {IRefreshTokensTransaction} from "./interfaces/IRefreshTokensTransaction";
-import {ITokenProvider} from "./interfaces/ITokenProvider";
+import type {IAuthRepository} from "./interfaces/IAuthRepository";
+import type {IEncryptor} from "./interfaces/IEncryptor";
+import type {IRefreshTokensTransaction} from "./interfaces/IRefreshTokensTransaction";
+import type {ITokenProvider} from "./interfaces/ITokenProvider";
 import { randomUUID } from "crypto";
 import RefreshedTokensDto from "./dtos/RefreshedTokensDto";
 import TokenPayloadDto from "./dtos/TokenPayloadDto";
 import { Inject, Injectable } from "@nestjs/common";
+import { ValidationError } from "../../common/utils/errors/ValidationError";
 
 @Injectable()
 export class AuthService {

@@ -1,8 +1,8 @@
 import "dotenv/config";
 import "reflect-metadata";
 import { DataSource } from "typeorm";
-import User from "src/features/auth/entities/User";
-import Token from "src/features/auth/entities/Token";
+import User from "../features/auth/entities/User";
+import Token from "../features/auth/entities/Token";
 
 
 const AppDataSource = new DataSource({

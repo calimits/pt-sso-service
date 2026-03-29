@@ -1,14 +1,14 @@
 import { DataSource, Repository } from "typeorm";
-import CreateTokenDto from "./dtos/CreateTokenDto";
-import TokenDto from "./dtos/TokenDto";
-import UpdateTokenDto from "./dtos/UpdateTokenDto";
-import { DBError } from "../../common/utils/errors/DBError";
-import { IAuthRepository } from "./interfaces/IAuthRepository";
-import Token from "./entities/Token";
-import { UserDto } from "./dtos/UserDto";
-import { CreateUserDto } from "./dtos/CreateUserDto";
-import User from "./entities/User";
-import UserInfoDto from "./dtos/UserInfoDto";
+import CreateTokenDto from "../dtos/CreateTokenDto";
+import TokenDto from "../dtos/TokenDto";
+import UpdateTokenDto from "../dtos/UpdateTokenDto";
+import { DBError } from "../../../common/utils/errors/DBError";
+import { IAuthRepository } from "../interfaces/IAuthRepository";
+import Token from "../entities/Token";
+import { UserDto } from "../dtos/UserDto";
+import { CreateUserDto } from "../dtos/CreateUserDto";
+import User from "../entities/User";
+import UserInfoDto from "../dtos/UserInfoDto";
 import { Inject, Injectable } from "@nestjs/common";
 
 @Injectable()

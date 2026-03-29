@@ -1,9 +1,9 @@
 import { Body, Controller, Get, InternalServerErrorException, Post, UnauthorizedException, UsePipes } from '@nestjs/common';
 import { AuthService } from './auth.service';
-import { CreateUserDto } from './dtos/CreateUserDto';
+import type { CreateUserDto } from './dtos/CreateUserDto';
 import { UserDto } from './dtos/UserDto';
 import UserDtoValidationPipe from './pipes/validateUserPipe';
-import LoginDto from './dtos/LoginDto';
+import type LoginDto from './dtos/LoginDto';
 import LoggedInDto from './dtos/LoggedInDto';
 
 @Controller("auth")

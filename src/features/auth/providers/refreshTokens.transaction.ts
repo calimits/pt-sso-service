@@ -1,7 +1,7 @@
 import { DataSource } from "typeorm";
-import CreateTokenDto from "./dtos/CreateTokenDto";
-import {IRefreshTokensTransaction} from "./interfaces/IRefreshTokensTransaction";
-import Token from "./entities/Token";
+import CreateTokenDto from "../dtos/CreateTokenDto";
+import {IRefreshTokensTransaction} from "../interfaces/IRefreshTokensTransaction";
+import Token from "../entities/Token";
 import { Inject, Injectable } from "@nestjs/common";
 
 
