@@ -17,9 +17,10 @@ export class AuthController {
   constructor(private readonly authService: AuthService) { }
 
   @Get("logout/:id")
-  async logout(@Param('id', ParseIntPipe) id: number): Promise<void> {
+  async logout(@Param('id', ParseIntPipe) id: number): Promise<{}> {
     try {
       await this.authService.logout(id);
+      return {}
     } catch (error) {
       let err = error as Error;
       throw new InternalServerErrorException({
