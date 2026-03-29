@@ -1,6 +1,6 @@
 import bcrypt from "bcrypt";
 import {IEncryptor} from "./interfaces/IEncryptor";
-import { EncryptionError } from "../common/utils/errors/EncryptionError";
+import { EncryptionError } from "../../common/utils/errors/EncryptionError";
 import { Injectable } from "@nestjs/common";
 
 @Injectable()

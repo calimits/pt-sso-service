@@ -1,6 +1,6 @@
 import jwt from "jsonwebtoken";
 import {ITokenProvider} from "./interfaces/ITokenProvider";
-import { ValidationError } from "../common/utils/errors/ValidationError";
+import { ValidationError } from "../../common/utils/errors/ValidationError";
 import { Injectable } from "@nestjs/common";
 
 @Injectable()

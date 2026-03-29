@@ -2,7 +2,7 @@ import { DataSource, Repository } from "typeorm";
 import CreateTokenDto from "./dtos/CreateTokenDto";
 import TokenDto from "./dtos/TokenDto";
 import UpdateTokenDto from "./dtos/UpdateTokenDto";
-import { DBError } from "../common/utils/errors/DBError";
+import { DBError } from "../../common/utils/errors/DBError";
 import { IAuthRepository } from "./interfaces/IAuthRepository";
 import Token from "./entities/Token";
 import { UserDto } from "./dtos/UserDto";
