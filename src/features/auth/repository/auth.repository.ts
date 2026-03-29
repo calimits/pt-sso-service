@@ -25,7 +25,7 @@ class PostgreAuthRepository implements IAuthRepository {
             newUser.password = user.password
 
             const savedUser = await this.userRepository.save(newUser);
-            return savedUser;
+            return {id: savedUser.id, email: savedUser.email};
         } catch (error) {
             let err = error as Error;
             throw new DBError(err.message);

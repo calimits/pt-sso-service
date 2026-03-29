@@ -72,7 +72,7 @@ export class AuthService {
                 }
             ]);
 
-            return { refreshToken, accessToken, userInfo };
+            return { refreshToken, accessToken, userInfo: {id: userInfo.id, email: userInfo.email} };
         } catch (error) {
             throw error;
         }
@@ -131,7 +131,7 @@ export class AuthService {
 
     public async validateToken(token: string): Promise<TokenPayloadDto> {
         try {
-            const decoded = await this.tokenProvider.verifyToken(token, String(process.env.SECRET_REFRESH_KEY)) as TokenPayloadDto;
+            const decoded = await this.tokenProvider.verifyToken(token, String(process.env.SECRET_ACCESS_KEY)) as TokenPayloadDto;
             return decoded;
         } catch (error) {
             throw error;
