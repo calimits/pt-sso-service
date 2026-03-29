@@ -6,4 +6,4 @@ interface IEncryptor {
     compare(cryptedText: string, text: string): Promise<boolean>
 }
 
-export default IEncryptor;
+export {IEncryptor};

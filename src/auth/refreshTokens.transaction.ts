@@ -1,12 +1,13 @@
 import { DataSource } from "typeorm";
 import CreateTokenDto from "./dtos/CreateTokenDto";
-import IRefreshTokensTransaction from "./interfaces/IRefreshTokensTransaction";
+import {IRefreshTokensTransaction} from "./interfaces/IRefreshTokensTransaction";
 import Token from "./entities/Token";
+import { Inject, Injectable } from "@nestjs/common";
 
 
-
+@Injectable()
 class RefreshTokensTransaction implements IRefreshTokensTransaction {
-    public constructor({dataSource}: {dataSource: DataSource}) {
+    public constructor(@Inject("DATA_SOURCE") dataSource: DataSource) {
         this.dataSource = dataSource; 
     }
 

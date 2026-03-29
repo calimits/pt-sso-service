@@ -3,16 +3,17 @@ import CreateTokenDto from "./dtos/CreateTokenDto";
 import TokenDto from "./dtos/TokenDto";
 import UpdateTokenDto from "./dtos/UpdateTokenDto";
 import { DBError } from "../common/utils/errors/DBError";
-import IAuthServiceRepository from "./interfaces/IAuthRepository";
+import { IAuthRepository } from "./interfaces/IAuthRepository";
 import Token from "./entities/Token";
 import { UserDto } from "./dtos/UserDto";
 import { CreateUserDto } from "./dtos/CreateUserDto";
 import User from "./entities/User";
 import UserInfoDto from "./dtos/UserInfoDto";
+import { Inject, Injectable } from "@nestjs/common";
 
-
-class PostgreAuthRepository implements IAuthServiceRepository {
-    public constructor({dataSource}: {dataSource: DataSource}) {
+@Injectable()
+class PostgreAuthRepository implements IAuthRepository {
+    public constructor(@Inject("DATA_SOURCE") dataSource: DataSource) {
         this.tokenRepository = dataSource.getRepository(Token);
         this.userRepository = dataSource.getRepository(User);
     }

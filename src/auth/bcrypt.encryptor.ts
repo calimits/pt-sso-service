@@ -1,7 +1,9 @@
 import bcrypt from "bcrypt";
-import IEncryptor from "./interfaces/IEncryptor";
+import {IEncryptor} from "./interfaces/IEncryptor";
 import { EncryptionError } from "../common/utils/errors/EncryptionError";
+import { Injectable } from "@nestjs/common";
 
+@Injectable()
 class BCrypt implements IEncryptor{
     public async encrypt(text: string): Promise<string> {
         try {

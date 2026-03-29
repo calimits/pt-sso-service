@@ -6,4 +6,4 @@ interface ITokenProvider {
     verifyToken(token: string, secret: string): Promise<object>
 }
 
-export default ITokenProvider;
+export {ITokenProvider};

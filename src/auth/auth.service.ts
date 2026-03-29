@@ -4,33 +4,23 @@ import LoggedInDto from "./dtos/LoggedInDto";
 import LoginDto from "./dtos/LoginDto";
 import { UserDto } from "./dtos/UserDto";
 import UserInfoDto from "./dtos/UserInfoDto";
-import IAuthRepository from "./interfaces/IAuthRepository";
-import IEncryptor from "./interfaces/IEncryptor";
-import IRefreshTokensTransaction from "./interfaces/IRefreshTokensTransaction";
-import ITokenProvider from "./interfaces/ITokenProvider";
+import {IAuthRepository} from "./interfaces/IAuthRepository";
+import {IEncryptor} from "./interfaces/IEncryptor";
+import {IRefreshTokensTransaction} from "./interfaces/IRefreshTokensTransaction";
+import {ITokenProvider} from "./interfaces/ITokenProvider";
 import { randomUUID } from "crypto";
-import TokenDto from "./dtos/TokenDto";
 import RefreshedTokensDto from "./dtos/RefreshedTokensDto";
 import TokenPayloadDto from "./dtos/TokenPayloadDto";
+import { Inject, Injectable } from "@nestjs/common";
 
-
-class AuthService {
-    public constructor({
-        repository,
-        tokenProvider,
-        encryptor,
-        refreshTokensTransaction
-    }: {
-        repository: IAuthRepository,
-        tokenProvider: ITokenProvider,
-        encryptor: IEncryptor
-        refreshTokensTransaction: IRefreshTokensTransaction
-    }) {
-        this.repository = repository;
-        this.tokenProvider = tokenProvider;
-        this.encryptor = encryptor
-        this.refreshTokensTransaction = refreshTokensTransaction;
-    }
+@Injectable()
+export class AuthService {
+    public constructor(
+        @Inject("AUTH_REPOSITORY") private readonly repository: IAuthRepository,
+        @Inject("TOKEN_PROVIDER") private readonly tokenProvider: ITokenProvider,
+        @Inject("ENCRYPTOR") private readonly encryptor: IEncryptor,
+        @Inject("REFRESH_TOKENS_TRANSACTION") private readonly refreshTokensTransaction: IRefreshTokensTransaction
+    ) {}
 
     public async register(user: CreateUserDto): Promise<UserDto> {
         try {
@@ -161,10 +151,4 @@ class AuthService {
         }
     }
 
-    private encryptor: IEncryptor;
-    private tokenProvider: ITokenProvider;
-    private repository: IAuthRepository;
-    private refreshTokensTransaction: IRefreshTokensTransaction
 }
-
-export default AuthService;

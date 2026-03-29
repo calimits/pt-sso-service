@@ -18,4 +18,4 @@ interface IAuthRepository {
     deleteAllToken41User(userId: number): Promise<void>
 }
 
-export default IAuthRepository;
+export {IAuthRepository};
