@@ -10,6 +10,7 @@ import express from 'express';
 import RefreshedTokensDto from './dtos/RefreshedTokensDto';
 import TokenPayloadDto from './dtos/TokenPayloadDto';
 import type ValidateTokenDto from './dtos/ValidateTokenDto';
+import type RefreshDto from './dtos/RefreshDto';
 
 @Controller("auth")
 export class AuthController {
@@ -56,18 +57,10 @@ export class AuthController {
 
   @Post("login")
   @UsePipes(UserDtoValidationPipe)
-  async login(@Body() user: LoginDto, @Res({ passthrough: true }) res: express.Response): Promise<LoggedResDto> {
+  async login(@Body() user: LoginDto): Promise<LoggedInDto> {
     try {
       const response: LoggedInDto = await this.authService.login(user);
-
-      res.cookie('refresh_token', response.refreshToken, {
-        httpOnly: true,   
-        secure: true,    
-        sameSite: 'strict', 
-        maxAge: 302400, 
-      });
-
-      return { accessToken: response.accessToken, userInfo: response.userInfo };
+      return response;
     } catch (error) {
       let err = error as Error;
       if (err.message === "Password don't match") throw new UnauthorizedException({ message: "Password don't match" });
@@ -78,20 +71,12 @@ export class AuthController {
   }
 
   @Post("refresh-tokens")
-  async refreshTokens(@Req() req: express.Request, @Res({ passthrough: true }) res: express.Response): Promise<{accessToken: string}> {
+  async refreshTokens(@Body() refreshDto: RefreshDto): Promise<RefreshedTokensDto> {
     try {
-      const token = req.cookies['refresh_token'];
+      const token: string = refreshDto.token; 
       const newTokens: RefreshedTokensDto = await this.authService.refreshTokens(token);
 
-      res.cookie('refresh_token', newTokens.refreshToken, {
-        httpOnly: true,   
-        secure: true,    
-        sameSite: 'strict', 
-        maxAge: 302400, 
-      });
-
-      const accessToken = newTokens.accessToken;
-      return {accessToken};
+      return newTokens;
     } catch (error) {
       let err = error as Error;
       if (err.message === "Password don't match") throw new UnauthorizedException({ message: "Password don't match" });

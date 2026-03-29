@@ -54,6 +54,7 @@ describe('AppController (e2e)', () => {
       .send({email: user.email, password: user.password});
 
       expect(loginRes.body).toEqual({
+        refreshToken: expect.any(String),
         accessToken: expect.any(String),
         userInfo: {id: expect.any(Number), email: user.email}
       });
@@ -114,9 +115,9 @@ describe('AppController (e2e)', () => {
 
       const refreshRes = await request(app.getHttpServer())
         .post(`/auth/refresh-tokens`)
-        .set('Cookie', cookies);
+        .send({token: loginRes.body.refreshToken});
 
-      expect(refreshRes.body).toEqual({accessToken: expect.any(String)});
+      expect(refreshRes.body).toEqual({accessToken: expect.any(String), refreshToken: expect.any(String)});
 
     });
 
