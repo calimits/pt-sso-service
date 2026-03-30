@@ -32,6 +32,7 @@ export class AuthController {
   @Get("validate-token")
   async validateToken(@Body() tokenDto: ValidateTokenDto): Promise<TokenPayloadDto> {
     try {
+      console.log(tokenDto)
       const decoded: TokenPayloadDto = await this .authService.validateToken(tokenDto.token);
       return decoded;
     } catch (error) {
