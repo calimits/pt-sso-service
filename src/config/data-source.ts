@@ -8,6 +8,7 @@ import Token from "../features/auth/entities/Token";
 const AppDataSource = new DataSource({
     type: "postgres",
     url: process.env.DB_URL,
+    ssl: { rejectUnauthorized: false },
     entities: [Token, User],
     migrations: ["src/migrations/*.ts"],
     synchronize: true,
